@@ -1,0 +1,31 @@
+
+
+Version:	3.12
+CmdLine:	C:\Users\David\Actual Documents\Programming Projects\NetBeans Projects\RoboClicker\Executable\RCv1-7.exe --l4j-debug
+WOW64:		yes
+Create mutex:	RC
+Working dir:	C:\Users\David\Actual Documents\Programming Projects\NetBeans Projects\RoboClicker\Executable\-
+Java min ver:	1.002.000
+Java max ver:	1.050.000
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_231\bin\javaw.exe (OK)
+Match:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_211
+Check launcher:	C:\Program Files\Java\jre1.8.0_211\bin\javaw.exe (OK)
+Match:		1.008.000_211
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_231
+Check launcher:	C:\Program Files\Java\jre1.8.0_231\bin\javaw.exe (OK)
+Match:		1.008.000_231
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_201
+Ignore:		1.008.000_201
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Runtime used:	1.008.000_231 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_231\bin\javaw.exe
+Launcher args:	-jar "C:\Users\David\Actual Documents\Programming Projects\NetBeans Projects\RoboClicker\Executable\RCv1-7.exe"
+Args length:	111/32768 chars
+Exit code:	0
