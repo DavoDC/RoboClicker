@@ -7,7 +7,7 @@ import java.util.TimerTask;
 /**
  * Does random clicking
  *
- * @author David Charkey
+ * @author David 
  */
 public class Clicker
 {

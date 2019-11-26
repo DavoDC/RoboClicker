@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 /**
  * Main class and GUI for RoboClicker
  *
- * @author David Charkey
+ * @author David 
  */
 public class Window extends javax.swing.JFrame
 {
@@ -52,7 +52,7 @@ public class Window extends javax.swing.JFrame
 
                 // Make adjustments to frame
                 gui.setVisible(true);
-                gui.setTitle("Robo Clicker V" + VERSION + " - by David Charkey, 2019");
+                gui.setTitle("Robo Clicker V" + VERSION + " - by David C, 2019");
                 int frameXPos = (SCREEN_W / 2) - (gui.getWidth() / 2);
                 gui.setLocation(frameXPos, 39);
                 gui.setResizable(false);
@@ -156,7 +156,7 @@ public class Window extends javax.swing.JFrame
         info.setBorder(null);
         info.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
         info.setForeground(new java.awt.Color(0, 0, 0));
-        info.setText("Welcome to the Robo Clicker program made by me, David Charkey!\nThis program can click a mouse button at random locations at random intervals.\nShown on the left are parameters that can be changed.\nA random number generator decides the values of these within the bounds you specify.\nWhen you have entered your desired values, press the bottom button.");
+        info.setText("Welcome to the Robo Clicker program made by me, David!\nThis program can click a mouse button at random locations at random intervals.\nShown on the left are parameters that can be changed.\nA random number generator decides the values of these within the bounds you specify.\nWhen you have entered your desired values, press the bottom button.");
         info.setCaretColor(new java.awt.Color(255, 248, 73));
         info.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         info.setDisabledTextColor(new java.awt.Color(255, 248, 73));

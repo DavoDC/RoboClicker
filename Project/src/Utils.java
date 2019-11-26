@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 /**
  * Contains methods to help with GUI processing
  *
- * @author David Charkey
+ * @author David 
  */
 public class Utils
 {

@@ -1,6 +1,6 @@
 /**
  * Provides an Invalid Input message 
- * @author David Charkey
+ * @author David 
  */
 public class Notification extends javax.swing.JFrame
 {
