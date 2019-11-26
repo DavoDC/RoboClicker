@@ -7,15 +7,17 @@ import javax.swing.JComboBox;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 /**
  * Main class and GUI for RoboClicker
  *
- * @author David 
+ * @author David
  */
-public class Window extends javax.swing.JFrame
-{
-    
+public class Window extends javax.swing.JFrame {
+
     // Version
     public static final double VERSION = 1.7;
 
@@ -28,24 +30,24 @@ public class Window extends javax.swing.JFrame
     public static final int SCREEN_W = (int) screen.getWidth();
     public static final int SCREEN_H = (int) screen.getHeight();
 
-    
     /**
      * Main method entrypoint
      *
      * @param args the command line arguments
      */
-    public static void main(String args[])
-    {
-        
-        // Set special property
-        System.setProperty("swing.defaultlaf",
-                "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+    public static void main(String args[]) {
+
+        // Set look and feel
+        try {
+            UIManager.setLookAndFeel(new NimbusLookAndFeel());
+        } catch (UnsupportedLookAndFeelException e) {
+            System.err.print(e.toString());
+            System.exit(1);
+        }
 
         // Create GUI
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
                 // Initialize GUI and tools
                 gui = new Window();
                 tools = new Utils(gui);
@@ -65,7 +67,7 @@ public class Window extends javax.swing.JFrame
                 //  Change maximums
                 tools.setFieldValue("maxX", "" + SCREEN_W);
                 tools.setFieldValue("maxY", "" + SCREEN_H);
-               
+
             }
         });
     }
@@ -73,8 +75,7 @@ public class Window extends javax.swing.JFrame
     /**
      * Creates GUI
      */
-    public Window()
-    {
+    public Window() {
         initComponents();
     }
 
@@ -484,12 +485,12 @@ public class Window extends javax.swing.JFrame
 
     /**
      * The action attached to the Start Clicking button
-     * @param evt 
+     *
+     * @param evt
      */
     private void startButtonAction(java.awt.event.ActionEvent evt)//GEN-FIRST:event_startButtonAction
     {//GEN-HEADEREND:event_startButtonAction
-        try
-        {
+        try {
             // Get user input
             int loX = tools.getFieldValue("loX");
             int hiX = tools.getFieldValue("hiX");
@@ -504,8 +505,7 @@ public class Window extends javax.swing.JFrame
             JComboBox jcb = (JComboBox) tools.getComponentByName("mouseSelect");
             String rawMB = (String) jcb.getSelectedItem();
             int mCode = 0;
-            switch (rawMB)
-            {
+            switch (rawMB) {
                 case "Left":
                     mCode = InputEvent.BUTTON1_DOWN_MASK;
                     break;
@@ -521,42 +521,36 @@ public class Window extends javax.swing.JFrame
             }
 
             // Put values into array
-            int params[] =
-            {
-                loX, hiX, loY, hiY, loTime, hiTime, mCode
-            };
+            int params[]
+                    = {
+                        loX, hiX, loY, hiY, loTime, hiTime, mCode
+                    };
 
             // Check for negative, invalid input
-            for (int curInt : params)
-            {
-                if (curInt < 0)
-                {
+            for (int curInt : params) {
+                if (curInt < 0) {
                     throw new IllegalArgumentException();
                 }
             }
 
             // Disable various GUI components
-            tools.changeComps(new String[]
-            {
+            tools.changeComps(new String[]{
                 "loX", "hiX", "loY", "hiY",
                 "loTime", "hiTime", "mouseSelect", "startBut"
-            }, (Component m) ->
-            {
+            }, (Component m)
+                    -> {
                 m.setEnabled(false);
             });
-            
+
             // Pass to clickbot
             Clicker bot = new Clicker(params);
-            
-        }
-        catch (Exception e) // When errors occurs:
+
+        } catch (Exception e) // When errors occurs:
         {
-            
+
             // Open invalid input notification
-            java.awt.EventQueue.invokeLater(new Runnable()
-            {
-                public void run()
-                {
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
                     Notification n = new Notification();
                     int nXpos = gui.getX() + gui.getWidth() / 2 - (n.getWidth() / 2);
                     int nYpos = gui.getY() + gui.getHeight() / 2 - (n.getHeight() / 2);
@@ -567,16 +561,15 @@ public class Window extends javax.swing.JFrame
             });
 
             // Reset fields
-            tools.changeComps(new String[]
-            {
+            tools.changeComps(new String[]{
                 "loX", "hiX", "loY", "hiY",
                 "loTime", "hiTime"
-            }, (Component m) ->
-            {
+            }, (Component m)
+                    -> {
                 ((JTextField) m).setText("0");
             });
         }
-        
+
     }//GEN-LAST:event_startButtonAction
 
     private void topLeftExit(java.awt.event.ActionEvent evt)//GEN-FIRST:event_topLeftExit
