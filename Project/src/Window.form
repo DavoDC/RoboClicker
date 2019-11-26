@@ -302,7 +302,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Welcome to the Robo Clicker program made by me, David Charkey!&#xa;This program can click a mouse button at random locations at random intervals.&#xa;Shown on the left are parameters that can be changed.&#xa;A random number generator decides the values of these within the bounds you specify.&#xa;When you have entered your desired values, press the bottom button."/>
+                <Property name="text" type="java.lang.String" value="Welcome to the Robo Clicker program made by me, David!&#xa;This program can click a mouse button at random locations at random intervals.&#xa;Shown on the left are parameters that can be changed.&#xa;A random number generator decides the values of these within the bounds you specify.&#xa;When you have entered your desired values, press the bottom button."/>
                 <Property name="caretColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="49" green="f8" red="ff" type="rgb"/>
                 </Property>
