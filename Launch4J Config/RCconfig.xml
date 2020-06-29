@@ -2,8 +2,8 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>C:\Users\David\GitHub Repos\RoboClicker\Project\dist\RoboClicker.jar</jar>
-  <outfile>C:\Users\David\GitHub Repos\RoboClicker\Executable\RCv1-7.exe</outfile>
+  <jar>C:\Users\David\GitHub Repos\RoboDoer\Project\dist\RoboDoer.jar</jar>
+  <outfile>C:\Users\David\GitHub Repos\RoboDoer\Executable\RoboDoer.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>-</chdir>
@@ -13,10 +13,10 @@
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
   <manifest></manifest>
-  <icon>C:\Users\David\GitHub Repos\RoboClicker\Launch4J Config\RCIcon.ico</icon>
+  <icon>C:\Users\David\GitHub Repos\RoboDoer\Launch4J Config\RCIcon.ico</icon>
   <singleInstance>
-    <mutexName>RC</mutexName>
-    <windowTitle>RoboClicker</windowTitle>
+    <mutexName>RoboDoer</mutexName>
+    <windowTitle>RoboDoer</windowTitle>
   </singleInstance>
   <jre>
     <path></path>
