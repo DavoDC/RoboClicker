@@ -292,11 +292,12 @@ public class tGUI extends BaseGUI {
         if (but.getText().contains("Start")) {
 
             // Process input
-            code.processInput(msgArea);
+            if (code.processInput(msgArea)) {
 
-            // Set new text and color
-            but.setText("Stop ");
-            but.setBackground(RED);
+                // If successful, set new text and color
+                but.setText("Stop ");
+                but.setBackground(RED);
+            }
 
         } else {
             // Else if stop wanted

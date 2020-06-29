@@ -50,9 +50,11 @@ public class Typer extends Doer {
             // Get random number of minutes within bounds
             int ranMins = getRanVal(lowerMin, upperMin + 1);
 
+            // Define fast minute
+            int oneMin = 50;
+
             // Convert to milliseconds
-            //int ranMS = ranMins * 500; // FAST TEST
-            int ranMS = ranMins * 60000;
+            int ranMS = ranMins * oneMin * 1000;
 
             // Reschedules another task with given random delay
             timer.schedule(new Task(), ranMS);

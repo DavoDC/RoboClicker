@@ -21,14 +21,15 @@ public class Code {
      * Starting method to retrieve and process input
      *
      * @param msgArea Must be passed as getName() is always null!
+     * @return True if was successful
      */
-    public void processInput(JTextArea msgArea) {
+    public boolean processInput(JTextArea msgArea) {
 
         // Retrieve user input
         // User input
-        String[] messages = null;
-        int lowerMin = 0;
-        int upperMin = 0;
+        String[] messages;
+        int lowerMin;
+        int upperMin;
         try {
 
             // Retrieve all messages
@@ -49,13 +50,6 @@ public class Code {
                 messages[i] = messages[i].replaceAll(regEx, "");
             }
 
-            // Display actual messsages used
-            System.out.println("\nActual messages used: ");
-            for (String curMsg : messages) {
-                System.out.println(" -" + curMsg);
-            }
-            System.out.println("");
-
             // Get lower bound and check
             lowerMin = tGUI.gui.getNumFromField("lowerMin");
             checkNumber(lowerMin);
@@ -64,11 +58,11 @@ public class Code {
             upperMin = tGUI.gui.getNumFromField("upperMin");
             checkNumber(upperMin);
 
-            // If upper minute is not greater than lower minute
-            if (!(lowerMin < upperMin)) {
+            // If upper minute is not greater/equal than lower minute
+            if (!(lowerMin <= upperMin)) {
 
                 // Notify
-                throwErr("2nd number should be greater");
+                throwErr("Second number should be greater/equal");
             }
 
         } catch (NumberFormatException e) {
@@ -77,7 +71,7 @@ public class Code {
             notifyUser("One of the numbers was invalid");
 
             // Do not process further
-            return;
+            return false;
 
         } catch (IllegalArgumentException e) {
 
@@ -85,7 +79,7 @@ public class Code {
             notifyUser(e.getMessage());
 
             // Do not process further
-            return;
+            return false;
         }
 
         // Get enter check
@@ -93,12 +87,22 @@ public class Code {
         enterCheck = (JCheckBox) tGUI.gui.getComponentByName("enterCheck");
         boolean enterWanted = enterCheck.isSelected();
 
+        // Display actual messsages used
+        System.out.println("\nActual messages used: ");
+        for (String curMsg : messages) {
+            System.out.println(" -" + curMsg);
+        }
+        System.out.println("");
+
         // Notify user
         notifyUser("Input was successfully processed");
 
         // Create typer and start
         typer = new Typer(messages, lowerMin, upperMin, enterWanted);
         typer.startDoing();
+
+        // Finish succesfully
+        return true;
     }
 
     /**
