@@ -19,7 +19,7 @@ public class tGUI extends BaseGUI {
 
     // Program info
     public static final String NAME = "RoboTyper";
-    public static final double VERSION = 1.0;
+    public static final double VERSION = 1.1;
 
     // Color constants
     public static final Color RED = new Color(255, 51, 51);
@@ -58,9 +58,10 @@ public class tGUI extends BaseGUI {
                 gui.setVisible(true);
                 gui.setTitle(NAME + " V" + VERSION + " - by David C, 2019");
                 int frameXPos = (SCREEN_W / 2) - (gui.getWidth() / 2);
-                gui.setLocation(frameXPos, 39);
+                gui.setLocation(frameXPos, 1);
                 gui.setResizable(false);
                 gui.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                gui.setAlwaysOnTop(true);
             }
         });
     }
@@ -95,14 +96,23 @@ public class tGUI extends BaseGUI {
         javax.swing.JButton startBut = new javax.swing.JButton();
         javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
         msgArea = new javax.swing.JTextArea();
-        javax.swing.JLabel everyLabel = new javax.swing.JLabel();
-        javax.swing.JLabel sendLabel = new javax.swing.JLabel();
-        javax.swing.JTextField lowerMin = new javax.swing.JTextField();
-        javax.swing.JLabel toLabel = new javax.swing.JLabel();
-        javax.swing.JLabel minLabel = new javax.swing.JLabel();
-        javax.swing.JTextField upperMin = new javax.swing.JTextField();
+        javax.swing.JLabel keyLabel = new javax.swing.JLabel();
+        javax.swing.JLabel msgLabel = new javax.swing.JLabel();
+        javax.swing.JTextField loMin = new javax.swing.JTextField();
+        javax.swing.JTextField hiSec = new javax.swing.JTextField();
         javax.swing.JLabel outLabel = new javax.swing.JLabel();
         javax.swing.JCheckBox enterCheck = new javax.swing.JCheckBox();
+        javax.swing.JLabel upperLabel = new javax.swing.JLabel();
+        javax.swing.JTextField loSec = new javax.swing.JTextField();
+        javax.swing.JTextField hiMin = new javax.swing.JTextField();
+        javax.swing.JLabel min1 = new javax.swing.JLabel();
+        javax.swing.JLabel lowLabel = new javax.swing.JLabel();
+        javax.swing.JLabel sec2 = new javax.swing.JLabel();
+        javax.swing.JLabel min2 = new javax.swing.JLabel();
+        javax.swing.JLabel sec1 = new javax.swing.JLabel();
+        javax.swing.JLabel boundsTitle = new javax.swing.JLabel();
+        javax.swing.JTextField keyDelay = new javax.swing.JTextField();
+        javax.swing.JLabel msLabel = new javax.swing.JLabel();
         javax.swing.JMenuBar jMenuBar1 = new javax.swing.JMenuBar();
 
         jMenu3.setText("File");
@@ -130,17 +140,18 @@ public class tGUI extends BaseGUI {
         panel.setName("panel"); // NOI18N
         panel.setPreferredSize(new java.awt.Dimension(810, 575));
 
-        title.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        title.setFont(new java.awt.Font("Segoe UI", 3, 30)); // NOI18N
         title.setForeground(new java.awt.Color(0, 0, 0));
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        title.setText("RoboTyper");
+        title.setText("RoboTyper ");
+        title.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         title.setName("title"); // NOI18N
 
         startBut.setBackground(new java.awt.Color(102, 255, 102));
         startBut.setFont(new java.awt.Font("Dubai", 3, 28)); // NOI18N
         startBut.setForeground(new java.awt.Color(0, 0, 0));
         startBut.setText("Start ");
-        startBut.setToolTipText("");
+        startBut.setToolTipText("Start/stop messaging");
         startBut.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         startBut.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         startBut.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -157,54 +168,126 @@ public class tGUI extends BaseGUI {
         msgArea.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         msgArea.setForeground(new java.awt.Color(0, 0, 0));
         msgArea.setRows(5);
-        msgArea.setText(":peace: , :Wario: , :star2: , :alien:, :TrapCard:, :angel: , \nNext MEE6 level here I come, \nYells Wa wa wa while putting up 3 fingers for each Wa, ");
+        msgArea.setText(":peace:, :Wario:, :star2:, :alien:, :TrapCard:, :angel:, :bear:, :bulb:, \n:superhero:, :infinity:, Next MEE6 level here I come, yeet, Youniverse, \nThere is no problem outside of you that is superior to the power within,");
+        msgArea.setToolTipText("Comma Separated Messages");
+        msgArea.setWrapStyleWord(true);
         msgArea.setName("msgArea"); // NOI18N
         jScrollPane1.setViewportView(msgArea);
 
-        everyLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        everyLabel.setForeground(new java.awt.Color(0, 0, 0));
-        everyLabel.setText("every");
-        everyLabel.setName("everyLabel"); // NOI18N
+        keyLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        keyLabel.setForeground(new java.awt.Color(0, 0, 0));
+        keyLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        keyLabel.setText("Key Delay");
+        keyLabel.setToolTipText("The delay between key presses");
+        keyLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        keyLabel.setName("keyLabel"); // NOI18N
 
-        sendLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        sendLabel.setForeground(new java.awt.Color(0, 0, 0));
-        sendLabel.setText("Send the messages");
-        sendLabel.setName("sendLabel"); // NOI18N
+        msgLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        msgLabel.setForeground(new java.awt.Color(0, 0, 0));
+        msgLabel.setText("Messages");
+        msgLabel.setToolTipText("One of these messages will be randomly chosen each time");
+        msgLabel.setName("msgLabel"); // NOI18N
 
-        lowerMin.setBackground(new java.awt.Color(255, 255, 255));
-        lowerMin.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
-        lowerMin.setForeground(new java.awt.Color(0, 0, 0));
-        lowerMin.setText("3");
-        lowerMin.setName("lowerMin"); // NOI18N
+        loMin.setBackground(new java.awt.Color(255, 255, 255));
+        loMin.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        loMin.setForeground(new java.awt.Color(0, 0, 0));
+        loMin.setText("0");
+        loMin.setToolTipText("Minutes");
+        loMin.setName("loMin"); // NOI18N
 
-        toLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        toLabel.setForeground(new java.awt.Color(0, 0, 0));
-        toLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        toLabel.setText("to");
-        toLabel.setName("toLabel"); // NOI18N
-
-        minLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        minLabel.setForeground(new java.awt.Color(0, 0, 0));
-        minLabel.setText("minutes");
-        minLabel.setName("minLabel"); // NOI18N
-
-        upperMin.setBackground(new java.awt.Color(255, 255, 255));
-        upperMin.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
-        upperMin.setForeground(new java.awt.Color(0, 0, 0));
-        upperMin.setText("5");
-        upperMin.setName("upperMin"); // NOI18N
+        hiSec.setBackground(new java.awt.Color(255, 255, 255));
+        hiSec.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        hiSec.setForeground(new java.awt.Color(0, 0, 0));
+        hiSec.setText("55");
+        hiSec.setToolTipText("Seconds");
+        hiSec.setName("hiSec"); // NOI18N
 
         outLabel.setBackground(new java.awt.Color(255, 255, 255));
-        outLabel.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        outLabel.setFont(new java.awt.Font("Cambria", 0, 20)); // NOI18N
         outLabel.setForeground(new java.awt.Color(0, 0, 0));
         outLabel.setText("Output: ");
+        outLabel.setToolTipText("Message Statistics");
+        outLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         outLabel.setName("outLabel"); // NOI18N
 
-        enterCheck.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        enterCheck.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         enterCheck.setForeground(new java.awt.Color(0, 0, 0));
         enterCheck.setSelected(true);
         enterCheck.setText("Press Enter After Each Message");
         enterCheck.setName("enterCheck"); // NOI18N
+
+        upperLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        upperLabel.setForeground(new java.awt.Color(0, 0, 0));
+        upperLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        upperLabel.setText("Upper");
+        upperLabel.setToolTipText("Upper Bound");
+        upperLabel.setName("upperLabel"); // NOI18N
+
+        loSec.setBackground(new java.awt.Color(255, 255, 255));
+        loSec.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        loSec.setForeground(new java.awt.Color(0, 0, 0));
+        loSec.setText("40");
+        loSec.setToolTipText("Seconds");
+        loSec.setName("loSec"); // NOI18N
+
+        hiMin.setBackground(new java.awt.Color(255, 255, 255));
+        hiMin.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        hiMin.setForeground(new java.awt.Color(0, 0, 0));
+        hiMin.setText("0");
+        hiMin.setToolTipText("Minutes");
+        hiMin.setName("hiMin"); // NOI18N
+
+        min1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        min1.setForeground(new java.awt.Color(0, 0, 0));
+        min1.setText("m");
+        min1.setToolTipText("");
+        min1.setName("min1"); // NOI18N
+
+        lowLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lowLabel.setForeground(new java.awt.Color(0, 0, 0));
+        lowLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lowLabel.setText("Lower");
+        lowLabel.setToolTipText("Lower Bound");
+        lowLabel.setName("lowLabel"); // NOI18N
+
+        sec2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        sec2.setForeground(new java.awt.Color(0, 0, 0));
+        sec2.setText("s");
+        sec2.setToolTipText("");
+        sec2.setName("sec2"); // NOI18N
+
+        min2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        min2.setForeground(new java.awt.Color(0, 0, 0));
+        min2.setText("m");
+        min2.setToolTipText("");
+        min2.setName("min2"); // NOI18N
+
+        sec1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        sec1.setForeground(new java.awt.Color(0, 0, 0));
+        sec1.setText("s");
+        sec1.setToolTipText("");
+        sec1.setName("sec1"); // NOI18N
+
+        boundsTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        boundsTitle.setForeground(new java.awt.Color(0, 0, 0));
+        boundsTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        boundsTitle.setText("Message Delay Bounds");
+        boundsTitle.setToolTipText("A random delay time is calculated for each message using these bounds");
+        boundsTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        boundsTitle.setName("boundsTitle"); // NOI18N
+
+        keyDelay.setBackground(new java.awt.Color(255, 255, 255));
+        keyDelay.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
+        keyDelay.setForeground(new java.awt.Color(0, 0, 0));
+        keyDelay.setText("36");
+        keyDelay.setToolTipText("Milliseconds");
+        keyDelay.setName("keyDelay"); // NOI18N
+
+        msLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        msLabel.setForeground(new java.awt.Color(0, 0, 0));
+        msLabel.setText("milliseconds");
+        msLabel.setToolTipText("");
+        msLabel.setName("msLabel"); // NOI18N
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -212,51 +295,87 @@ public class tGUI extends BaseGUI {
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(outLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(panelLayout.createSequentialGroup()
-                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(264, 264, 264))
-                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(sendLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(panelLayout.createSequentialGroup()
-                            .addComponent(everyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lowerMin, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(7, 7, 7)
-                            .addComponent(toLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(7, 7, 7)
-                            .addComponent(upperMin, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(minLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(enterCheck))
-                        .addComponent(outLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(startBut, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(266, 266, 266)
+                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(startBut, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(boundsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(panelLayout.createSequentialGroup()
+                                        .addComponent(loMin, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(min1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(loSec, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(sec1))
+                                    .addComponent(lowLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(panelLayout.createSequentialGroup()
+                                        .addComponent(hiMin, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(min2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(hiSec, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(sec2))
+                                    .addComponent(upperLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(76, 76, 76)
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(enterCheck)
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addComponent(keyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(keyDelay, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(msLabel))))
+                    .addComponent(msgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
                 .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(sendLabel)
+                .addComponent(msgLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addComponent(boundsTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(upperLabel)
+                            .addComponent(lowLabel)))
+                    .addComponent(enterCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lowerMin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toLabel)
-                    .addComponent(upperMin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(everyLabel)
-                    .addComponent(minLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(enterCheck))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(loMin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(min1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loSec, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sec1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hiMin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(min2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hiSec, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sec2)
+                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(keyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(keyDelay)
+                        .addComponent(msLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(startBut)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(outLabel)
-                .addGap(8, 8, 8))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jMenuBar1.setBorder(null);
@@ -266,13 +385,14 @@ public class tGUI extends BaseGUI {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE)
+            .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         pack();

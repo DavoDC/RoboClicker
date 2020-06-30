@@ -2,6 +2,10 @@ package typer;
 
 import common.Doer;
 import java.awt.event.KeyEvent;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -14,29 +18,35 @@ public class Typer extends Doer {
 
     // Parameters
     private final String[] messages;
-    private final int lowerMin;
-    private final int upperMin;
+    private final int loSec;
+    private final int hiSec;
     private final boolean enterWanted;
+    private final int keyDelay;
 
-    // Counters
+    // Time started
+    private LocalTime startTime;
+
+    // Statistic variables
     private int msgCount;
-    private int totalMins;
-    private double aveMins;
+    private int totalSecs;
+    private double aveDelay;
 
     /**
      * Create Typer
      *
      * @param messages
-     * @param lowerMin
-     * @param upperMin
+     * @param loSec
+     * @param hiSec
      * @param enterWanted
+     * @param keyDelay
      */
-    public Typer(String[] messages, int lowerMin, int upperMin,
-            boolean enterWanted) {
+    public Typer(String[] messages, int loSec, int hiSec,
+            boolean enterWanted, int keyDelay) {
         this.messages = messages;
-        this.lowerMin = lowerMin;
-        this.upperMin = upperMin;
+        this.loSec = loSec;
+        this.hiSec = hiSec;
         this.enterWanted = enterWanted;
+        this.keyDelay = keyDelay;
     }
 
     /**
@@ -47,14 +57,11 @@ public class Typer extends Doer {
         @Override
         public void run() {
 
-            // Get random number of minutes within bounds
-            int ranMins = getRanVal(lowerMin, upperMin + 1);
-
-            // Define fast minute
-            int oneMin = 50;
+            // Get random number of seconds within bounds
+            int ranSec = getRanVal(loSec, hiSec + 1);
 
             // Convert to milliseconds
-            int ranMS = ranMins * oneMin * 1000;
+            int ranMS = ranSec * 1000;
 
             // Reschedules another task with given random delay
             timer.schedule(new Task(), ranMS);
@@ -85,18 +92,53 @@ public class Typer extends Doer {
                 pressAndReleaseKey(KeyEvent.VK_ENTER, 'a');
             }
 
-            // Adjust counters
-            msgCount++;
-            totalMins += ranMins;
-            aveMins = (double) totalMins / (double) msgCount;
-            aveMins = (double) Math.round(aveMins * 100) / 100;
+            // Message Statistics
+            // List of information
+            ArrayList<String> info = new ArrayList<>();
 
-            // Notify user
-            String msgCountS = "msgCount: " + msgCount;
-            String minXPS = ", minXP: " + msgCount * 15;
-            String aveTimeS = ", aveMins: " + aveMins;
-            String info = msgCountS + minXPS + aveTimeS;
-            tGUI.code.notifyUser(info);
+            // Increase message count
+            msgCount++;
+            addPart(info, "N", msgCount);
+
+            // Calculate average delay between mesages
+            totalSecs += ranSec;
+            aveDelay = (double) totalSecs / (double) msgCount;
+            aveDelay = roundTo2DP(aveDelay);
+            addPart(info, "aveDelay", aveDelay, "s");
+
+            // Get up time
+            Duration timeSinceStart;
+            timeSinceStart = Duration.between(startTime, LocalTime.now());
+            String upTime = "";
+            upTime += timeSinceStart.toHoursPart() + "h";
+            upTime += timeSinceStart.toMinutesPart() + "m";
+            upTime += timeSinceStart.toSecondsPart() + "s";
+            addPart(info, "upTime", upTime);
+
+            // Calculate messages per minute
+            int minsSinceStart = timeSinceStart.toMinutesPart();
+            boolean minHasPassed = minsSinceStart != 0;
+            double msgRate = (double) msgCount / (double) minsSinceStart;
+            msgRate = roundTo2DP(msgRate);
+            if (minHasPassed) {
+                addPart(info, "msgRate", msgRate, "msg/min");
+            }
+
+            // Calculate XP estimate
+            if (minHasPassed && msgRate >= 1.0) {
+                int estXP = minsSinceStart * 20;
+                addPart(info, "estXP", estXP, "XP");
+            }
+
+            // Give info to user
+            String infoS = "";
+            String sep = ", ";
+            for (String infoPart : info) {
+                infoS += infoPart + sep;
+            }
+            int end = infoS.length() - sep.length();
+            infoS = infoS.substring(0, end);
+            tGUI.code.notifyUser(infoS);
         }
     }
 
@@ -130,14 +172,14 @@ public class Typer extends Doer {
             bot.keyPress(keyCode);
 
             // Wait
-            bot.delay(100);
+            bot.delay(keyDelay);
 
             // Releasing
             // Release key
             bot.keyRelease(keyCode);
 
             // Wait (to ensure shift is not still down after program ends)
-            bot.delay(100);
+            bot.delay(keyDelay);
 
             // Release shift if upper case
             if (isUpper) {
@@ -145,7 +187,7 @@ public class Typer extends Doer {
             }
 
             // Wait
-            bot.delay(100);
+            bot.delay(keyDelay);
         } catch (Exception e) {
 
             // Notify
@@ -167,9 +209,45 @@ public class Typer extends Doer {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
+                startTime = LocalTime.now();
                 Task task = new Task();
                 task.run();
             }
-        }, 3000);
+        }, 4000);
+    }
+
+    /**
+     * Add info part to list
+     *
+     * @param name
+     * @param val
+     * @param unit
+     * @return
+     */
+    private void addPart(ArrayList<String> list, String name, Object val,
+            String unit) {
+        list.add(name + ": " + val + unit);
+    }
+
+    /**
+     * Add info part to list with no unit
+     *
+     * @param name
+     * @param val
+     * @param unit
+     * @return
+     */
+    private void addPart(ArrayList<String> list, String name, Object val) {
+        addPart(list, name, val, "");
+    }
+
+    /**
+     * Round a given double to 2 decimal places
+     *
+     * @param input
+     * @return
+     */
+    private double roundTo2DP(double input) {
+        return ((double) Math.round(input * 100) / 100);
     }
 }

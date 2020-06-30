@@ -13,7 +13,7 @@
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
   <manifest></manifest>
-  <icon>C:\Users\David\GitHub Repos\RoboDoer\Launch4J Config\RCIcon.ico</icon>
+  <icon>C:\Users\David\GitHub Repos\RoboDoer\Launch4J Config\RDIcon.ico</icon>
   <singleInstance>
     <mutexName>RoboDoer</mutexName>
     <windowTitle>RoboDoer</windowTitle>
