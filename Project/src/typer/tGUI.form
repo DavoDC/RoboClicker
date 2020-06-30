@@ -82,7 +82,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panel" min="-2" pref="840" max="-2" attributes="0"/>
+          <Component id="panel" alignment="0" pref="995" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -113,63 +113,70 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="title" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="outLabel" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="266" max="-2" attributes="0"/>
-                          <Component id="title" min="-2" pref="200" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="startBut" alignment="0" min="-2" pref="772" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="boundsTitle" min="-2" pref="272" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="loMin" min="-2" pref="43" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="min1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="loSec" min="-2" pref="41" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="sec1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="lowLabel" min="-2" pref="126" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="outLabel" alignment="1" min="-2" pref="931" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="startBut" min="-2" pref="931" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jScrollPane1" min="-2" pref="931" max="-2" attributes="0"/>
+                                  <Component id="msgLabel" alignment="0" min="-2" pref="306" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="305" max="-2" attributes="0"/>
+                                      <Component id="keyLabel" min="-2" pref="180" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                                      <Component id="enterCheck" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="hiMin" min="-2" pref="43" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="min2" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="hiSec" min="-2" pref="43" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="sec2" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="loMin" min="-2" pref="43" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="min1" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="loSec" min="-2" pref="41" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                                      <Component id="lowLabel" min="-2" pref="106" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="sec1" min="-2" pref="14" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="hiMin" min="-2" pref="43" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="min2" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="hiSec" min="-2" pref="43" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="sec2" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="upperLabel" min="-2" pref="128" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Component id="boundsTitle" alignment="0" min="-2" pref="272" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="upperLabel" min="-2" pref="128" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                      <Component id="keyDelay" min="-2" pref="58" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="msLabel" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="enterCheck" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="keyLabel" min="-2" pref="151" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="keyDelay" min="-2" pref="58" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="msLabel" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
                       </Group>
-                      <Component id="msgLabel" alignment="0" min="-2" pref="264" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -181,39 +188,52 @@
                   <Component id="msgLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="121" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="boundsTitle" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="boundsTitle" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="upperLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="lowLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="keyLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="upperLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lowLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="loMin" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="min1" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                              <Component id="loSec" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="sec1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="hiMin" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="min2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="hiSec" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="sec2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="keyDelay" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="msLabel" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="enterCheck" min="-2" pref="50" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="loMin" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="min1" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                      <Component id="loSec" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="sec1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="hiMin" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="min2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="hiSec" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="sec2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                          <Component id="keyLabel" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="keyDelay" alignment="3" max="32767" attributes="0"/>
-                          <Component id="msLabel" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="enterCheck" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="startBut" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="outLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="10" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -284,7 +304,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value=":peace:, :Wario:, :star2:, :alien:, :TrapCard:, :angel:, :bear:, :bulb:, &#xa;:superhero:, :infinity:, Next MEE6 level here I come, yeet, Youniverse, &#xa;There is no problem outside of you that is superior to the power within,"/>
+                <Property name="text" type="java.lang.String" value=":peace:, :Wario:, :star2:, :alien:, :TrapCard:, :angel:, :bear:, :bulb:, :superhero:, :infinity:, &#xa;Next MEE6 level here I come, yeet, Youniverse, &#xa;There is no problem outside of you that is superior to the power within,"/>
                 <Property name="toolTipText" type="java.lang.String" value="Comma Separated Messages"/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="name" type="java.lang.String" value="msgArea" noResource="true"/>
@@ -410,7 +430,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="40"/>
+            <Property name="text" type="java.lang.String" value="45"/>
             <Property name="toolTipText" type="java.lang.String" value="Seconds"/>
             <Property name="name" type="java.lang.String" value="loSec" noResource="true"/>
           </Properties>

@@ -1,6 +1,7 @@
 package clicker;
 
 import common.Doer;
+import java.util.Timer;
 import java.util.TimerTask;
 
 /**
@@ -39,7 +40,7 @@ public class Clicker extends Doer {
     /**
      * Inner class for Task
      */
-    class Task extends TimerTask {
+    class ClickTask extends TimerTask {
 
         @Override
         public void run() {
@@ -50,7 +51,7 @@ public class Clicker extends Doer {
             int ranTime = getRanVal(loTime, hiTime);
 
             // This task reschedules another one with a random delay
-            timer.schedule(new Task(), ranTime);
+            timer.schedule(new ClickTask(), ranTime);
 
             // Do clicking
             //  Move mouse
@@ -68,7 +69,11 @@ public class Clicker extends Doer {
     @Override
     public void startDoing() {
 
-        Task task = new Task();
-        task.run();
+        // Reset timer (in case purge was called before)
+        timer = new Timer();
+
+        // Create task and run
+        ClickTask ct = new ClickTask();
+        ct.run();
     }
 }

@@ -3,7 +3,6 @@ package typer;
 import common.Doer;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -50,9 +49,38 @@ public class Typer extends Doer {
     }
 
     /**
+     * Start doing typing
+     */
+    @Override
+    public void startDoing() {
+
+        // Reset timer (in case purge was called before)
+        timer = new Timer();
+
+        // Start doing typing after a short delay,
+        // to allow "successfully processed" message to display
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                startTime = LocalTime.now();
+                TypeTask tt = new TypeTask();
+                tt.run();
+            }
+        }, 3000);
+
+        // Start showing message statistics regularly
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                showMsgStats();
+            }
+        }, 3100, 3000);
+    }
+
+    /**
      * Inner class for Task
      */
-    class Task extends TimerTask {
+    class TypeTask extends TimerTask {
 
         @Override
         public void run() {
@@ -63,8 +91,8 @@ public class Typer extends Doer {
             // Convert to milliseconds
             int ranMS = ranSec * 1000;
 
-            // Reschedules another task with given random delay
-            timer.schedule(new Task(), ranMS);
+            // Reschedule another type task with given random delay
+            timer.schedule(new TypeTask(), ranMS);
 
             // Get random message
             int ranIndex = getRanVal(0, messages.length);
@@ -92,53 +120,14 @@ public class Typer extends Doer {
                 pressAndReleaseKey(KeyEvent.VK_ENTER, 'a');
             }
 
-            // Message Statistics
-            // List of information
-            ArrayList<String> info = new ArrayList<>();
-
+            // Update message statistics
             // Increase message count
             msgCount++;
-            addPart(info, "N", msgCount);
 
             // Calculate average delay between mesages
             totalSecs += ranSec;
             aveDelay = (double) totalSecs / (double) msgCount;
             aveDelay = roundTo2DP(aveDelay);
-            addPart(info, "aveDelay", aveDelay, "s");
-
-            // Get up time
-            Duration timeSinceStart;
-            timeSinceStart = Duration.between(startTime, LocalTime.now());
-            String upTime = "";
-            upTime += timeSinceStart.toHoursPart() + "h";
-            upTime += timeSinceStart.toMinutesPart() + "m";
-            upTime += timeSinceStart.toSecondsPart() + "s";
-            addPart(info, "upTime", upTime);
-
-            // Calculate messages per minute
-            int minsSinceStart = timeSinceStart.toMinutesPart();
-            boolean minHasPassed = minsSinceStart != 0;
-            double msgRate = (double) msgCount / (double) minsSinceStart;
-            msgRate = roundTo2DP(msgRate);
-            if (minHasPassed) {
-                addPart(info, "msgRate", msgRate, "msg/min");
-            }
-
-            // Calculate XP estimate
-            if (minHasPassed && msgRate >= 1.0) {
-                int estXP = minsSinceStart * 20;
-                addPart(info, "estXP", estXP, "XP");
-            }
-
-            // Give info to user
-            String infoS = "";
-            String sep = ", ";
-            for (String infoPart : info) {
-                infoS += infoPart + sep;
-            }
-            int end = infoS.length() - sep.length();
-            infoS = infoS.substring(0, end);
-            tGUI.code.notifyUser(infoS);
         }
     }
 
@@ -196,24 +185,67 @@ public class Typer extends Doer {
     }
 
     /**
-     * Start doing typing
+     * Show user message statistics
      */
-    @Override
-    public void startDoing() {
+    private void showMsgStats() {
 
-        // Reset timer
-        timer = new Timer();
+        // Initialize list of information
+        ArrayList<String> info = new ArrayList<>();
 
-        // Start doing task after a short delay
-        // (to allow "successfully processed" message to display)
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                startTime = LocalTime.now();
-                Task task = new Task();
-                task.run();
+        // Add message count
+        addPart(info, "N", msgCount);
+
+        // Add average delay
+        addPart(info, "aveDelay", aveDelay, "s");
+
+        // Get up time
+        Duration timeSinceStart;
+        timeSinceStart = Duration.between(startTime, LocalTime.now());
+        String upTime = "";
+        upTime += timeSinceStart.toDaysPart() + "d";
+        upTime += timeSinceStart.toHoursPart() + "h";
+        upTime += timeSinceStart.toMinutesPart() + "m";
+        upTime += timeSinceStart.toSecondsPart() + "s";
+
+        // Add up time
+        addPart(info, "upTime", upTime);
+
+        // Get minutes passed since typing start
+        int minsSinceStart = (int) timeSinceStart.toMinutes();
+
+        // Check whether one minute has passed
+        boolean minHasPassed = minsSinceStart != 0;
+
+        // If minute has passed
+        if (minHasPassed) {
+
+            // Calculate message rate
+            double msgRate = (double) msgCount / (double) minsSinceStart;
+            msgRate = roundTo2DP(msgRate);
+
+            // Add message rate
+            addPart(info, "msgRate", msgRate, "msg/min");
+
+            // If message rate is greater than/equal to one
+            if (msgRate >= 1.0) {
+
+                // Calculate and add XP estimate
+                int estXP = minsSinceStart * 20;
+                addPart(info, "estXP", estXP, "XP");
             }
-        }, 4000);
+        }
+
+        // Generate info string from info list
+        String infoS = "";
+        String sep = ", ";
+        for (String infoPart : info) {
+            infoS += infoPart + sep;
+        }
+        int end = infoS.length() - sep.length();
+        infoS = infoS.substring(0, end);
+
+        // Give info string to user
+        tGUI.code.notifyUser(infoS);
     }
 
     /**

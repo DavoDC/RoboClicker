@@ -14,7 +14,15 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 public class Code {
 
-    public void processInput() {
+    // Clicker
+    private Clicker clicker;
+
+    /**
+     * Process user input
+     *
+     * @return
+     */
+    public boolean processInput() {
         try {
 
             // Get GUI
@@ -60,21 +68,14 @@ public class Code {
                 }
             }
 
-            // Disable various GUI components
-            changeComps(new String[]{
-                "loX", "hiX", "loY", "hiY",
-                "loTime", "hiTime", "mouseSelect", "startBut"
-            }, (Component m)
-                    -> {
-                m.setEnabled(false);
-            });
+            // Pass to clicker
+            clicker = new Clicker(params);
+            clicker.startDoing();
 
-            // Pass to clickbot
-            Clicker bot = new Clicker(params);
-            bot.startDoing();
+            // Finish successfully
+            return true;
 
-        } catch (Exception e) // When errors occurs:
-        {
+        } catch (Exception e) {
 
             // Open invalid input notification
             java.awt.EventQueue.invokeLater(new Runnable() {
@@ -106,6 +107,9 @@ public class Code {
                     -> {
                 ((JTextField) m).setText("0");
             });
+
+            // Finish with issue
+            return false;
         }
     }
 
@@ -137,5 +141,12 @@ public class Code {
     interface actionInterface {
 
         public void change(Component component);
+    }
+
+    /**
+     * Stop typer
+     */
+    public void stopClicker() {
+        clicker.stopDoing();
     }
 }

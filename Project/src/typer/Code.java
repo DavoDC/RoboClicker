@@ -30,8 +30,8 @@ public class Code {
 
         // Notify
         System.out.println("");
-        System.out.println("\nNEW INPUT");
-        notifyUser("Attempting to process user input... (to make new Typer)");
+        System.out.println("\nNEW INPUT PROCESSING REQUEST");
+        notifyUser("Attempting to process user input...");
 
         // Retrieve user input
         // User input
@@ -83,14 +83,14 @@ public class Code {
         boolean enterWanted = enterCheck.isSelected();
 
         // Notify user
-        notifyUser("Input was successfully processed! Typing starting in 4s");
+        notifyUser("Input was successfully processed! Typing starting...");
 
         // Display actual messsages used
-        System.out.println("\nInternal: Actual messages that will be used: ");
+        System.out.print("Internal: Messages after processing are");
         for (String curMsg : messages) {
-            System.out.println(" -" + curMsg);
+            System.out.print(" '" + curMsg + "'");
         }
-        System.out.println("");
+        System.out.println("\n");
 
         // Create typer and start
         typer = new Typer(messages, loSec, hiSec,

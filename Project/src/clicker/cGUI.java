@@ -3,6 +3,7 @@ package clicker;
 import common.BaseGUI;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JButton;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
@@ -173,10 +174,10 @@ public class cGUI extends BaseGUI {
         title4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title4.setText("X");
 
-        startButton.setBackground(new java.awt.Color(255, 51, 51));
-        startButton.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
+        startButton.setBackground(new java.awt.Color(102, 255, 102));
+        startButton.setFont(new java.awt.Font("Dubai", 3, 24)); // NOI18N
         startButton.setForeground(new java.awt.Color(0, 0, 0));
-        startButton.setText("Start Custom Clicking!");
+        startButton.setText("Start ");
         startButton.setToolTipText("");
         startButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         startButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -484,7 +485,29 @@ public class cGUI extends BaseGUI {
      */
     private void startButtonAction(java.awt.event.ActionEvent evt)//GEN-FIRST:event_startButtonAction
     {//GEN-HEADEREND:event_startButtonAction
-        code.processInput();
+        // Get button
+        JButton but = ((JButton) evt.getSource());
+
+        // If start wanted
+        if (but.getText().contains("Start")) {
+
+            // Process input
+            if (code.processInput()) {
+
+                // If successful, set new text and color
+                but.setText("Stop ");
+                but.setBackground(RED);
+            }
+
+        } else {
+            // Else if stop wanted
+            // Stop typer
+            code.stopClicker();
+
+            // Set old text and color
+            but.setText("Start ");
+            but.setBackground(GREEN);
+        }
     }//GEN-LAST:event_startButtonAction
 
     private void topLeftExit(java.awt.event.ActionEvent evt)//GEN-FIRST:event_topLeftExit
