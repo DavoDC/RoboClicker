@@ -179,7 +179,7 @@ public class cGUI extends BaseGUI {
         startButton.setForeground(new java.awt.Color(0, 0, 0));
         startButton.setText("Start ");
         startButton.setToolTipText("");
-        startButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        startButton.setBorder(null);
         startButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         startButton.setName("startBut"); // NOI18N
         startButton.addActionListener(new java.awt.event.ActionListener() {
@@ -221,8 +221,8 @@ public class cGUI extends BaseGUI {
         mouseSelect.setBackground(new java.awt.Color(242, 250, 137));
         mouseSelect.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         mouseSelect.setForeground(new java.awt.Color(0, 0, 0));
-        mouseSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Left ", "Middle", "Right", " " }));
-        mouseSelect.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        mouseSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Left", "Middle", "Right", " " }));
+        mouseSelect.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         mouseSelect.setName("mouseSelect"); // NOI18N
 
         loY.setBackground(new java.awt.Color(242, 250, 137));
