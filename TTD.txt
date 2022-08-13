@@ -1,0 +1,44 @@
+IMPROVE THIS
+ public void setNumFieldVal(String nameQuery, String newText) {
+
+
+LIST THINGS U DO FOR COMMIT
+
+ADD SOMETHING THAT SHOWS WHERE THE COORDINATES ARE
+(a log of them)
+Use scrolling text - see ytdl 
+Add time stamps 
+
+Thread for every click 
+
+Add generated click log 
+
+(Human click) 
+(Robot click) 
+
+
+Add coordinates to robo clicker and use for necro
+
+DO THIS
+
+ADD TO cGUI 
+start thread here
+
+ /**
+     * Creates GUI
+     */
+    public cGUI() {
+        initComponents();
+    }
+
+
+I just ran into this problem in my Java Robot programming, and the short answer is, to get the current mouse cursor location/position, use the getPointerInfo method of the java.awt.MouseInfo class, like this:
+
+Point p = MouseInfo.getPointerInfo().getLocation();
+After that call you can access the mouse x and y coordinates as int values like this:
+
+int x = p.x;
+int y = p.y;
+If you're writing a normal Java/Swing application, you'll probably want to use the MouseListener or MouseMotionListener interfaces (or their corresponding "adapter" classes), but those are limited to only giving you the mouse coordinates when the mouse is within the borders of your application.
+
+
